@@ -3,10 +3,11 @@
        <input type="checkbox" (click)="toggleTask()" [(ngModel)]="task.isDone"/>
    </div>
    <div class="col-sm-10">
-       <span [ngClass]="task.isDone ? 'task-done' : 'task'" (click)="enableEditing()">{{task.name}}</span>
-       <!-- <form *ngIf="isBeingEdited" (submit)="editName()">
-         <input type="text" [(ngModel)] = "editedName" (blur)="disableEditing()"/>
-      </form> -->
+       <span [ngClass]="task.isDone ? 'task-done' : 'task'" (click)="enableEditing()" *ngIf="!editable">{{task.name}}</span>
+
+      <form *ngIf="editable" (submit)="editName()">
+         <input type="text" [(ngModel)] = "editedName" name="newName" (blur)="disableEditing()"/>
+      </form>
    </div>
    <div class="col-sm-1">
        <span (click)="deleteTask()" class="glyphicon glyphicon-trash" style="cursor:pointer;"></span>

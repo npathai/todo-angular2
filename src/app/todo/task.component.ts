@@ -13,14 +13,27 @@ export class TaskComponent implements OnInit {
 
   @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
+  editable: boolean = false;
+  editedName: string;
+
   constructor(private todoService: InMemoryTodoService) {
     console.log('task component created: ');
   }
 
   ngOnInit() {
     console.log('On init called of task component: ');
+    this.editedName = this.task.name;
   }
 
+  toggleTask() {
+    console.log('toggle called');
+    console.log(this.task.id);
+    this.todoService.updateDone(this.task.id, !this.task.isDone)
+    .then(() => {
+      this.notify.emit('toggled');
+    });
+  }
+  
   deleteTask() {
     console.log('delete called');
     console.log(this.task.id);
@@ -28,5 +41,24 @@ export class TaskComponent implements OnInit {
     .then(() => {
       this.notify.emit('deleted');
     });
+  }
+
+  enableEditing() {
+    this.editable = true;
+  }
+
+  disableEditing() {
+    this.editable = false;
+  }
+
+  editName() {
+    if (!(this.editedName === this.task.name)) {
+      let newTask = new Task(this.task.id, this.editedName, this.task.isDone);
+      this.todoService.update(newTask)
+      .then(() => {
+        this.task = newTask;
+        this.notify.emit('edited');
+      });
+    }
   }
 }

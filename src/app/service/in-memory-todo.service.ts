@@ -8,12 +8,12 @@ export class InMemoryTodoService {
   tasks: Task[];
 
   constructor() {
-    this.tasks = [new Task("0", "Test task")];
+    this.tasks = [];
     this.id = 1;
   }
 
   add(name: string): Promise<Task> {
-    var task = new Task("" + this.id++, name);
+    var task = new Task("" + this.id++, name, false);
     this.tasks.push(task);
     return Promise.resolve(task);
   }
@@ -40,5 +40,15 @@ export class InMemoryTodoService {
       }
     }
     return Promise.reject("task not found");
+  }
+
+  update(task: Task): Promise<void> {
+    console.log('In memory task service >>>>> update called : ' + task.id);
+    for (var i = 0; i < this.tasks.length; i++) {
+      if (this.tasks[i].id === task.id+"") {
+        this.tasks[i] = task;
+        return Promise.resolve();
+      }
+    }
   }
 }
