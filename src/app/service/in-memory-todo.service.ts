@@ -8,8 +8,8 @@ export class InMemoryTodoService {
   tasks: Task[];
 
   constructor() {
-    this.tasks = [];
-    this.id = 0;
+    this.tasks = [new Task("0", "Test task")];
+    this.id = 1;
   }
 
   add(name: string): Promise<Task> {
@@ -18,9 +18,9 @@ export class InMemoryTodoService {
     return Promise.resolve(task);
   }
 
-  delete(id: number): Promise<void> {
+  delete(id: string): Promise<void> {
     for (var i = 0; i < this.tasks.length; i++) {
-      if (this.tasks[i].id === id+"") {
+      if (this.tasks[i].id === id) {
         this.tasks.splice(i, 1);
         return Promise.resolve();
       }
