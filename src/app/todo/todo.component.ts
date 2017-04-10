@@ -6,7 +6,7 @@ import {Task} from '../model/task';
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css'],
-  providers: [InMemoryTodoService]
+  providers: []
 })
 export class TodoComponent implements OnInit {
   newTask: string;

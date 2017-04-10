@@ -33,7 +33,7 @@ export class TaskComponent implements OnInit {
       this.notify.emit('toggled');
     });
   }
-  
+
   deleteTask() {
     console.log('delete called');
     console.log(this.task.id);
@@ -60,5 +60,6 @@ export class TaskComponent implements OnInit {
         this.notify.emit('edited');
       });
     }
+    this.editable = false;
   }
 }
