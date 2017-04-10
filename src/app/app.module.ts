@@ -6,12 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
 import { TaskComponent } from './todo/task.component';
+import { FocusDirective } from './directive/focus.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoComponent,
-    TaskComponent
+    TaskComponent,
+    FocusDirective
   ],
   imports: [
     BrowserModule,

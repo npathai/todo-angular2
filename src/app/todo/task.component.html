@@ -5,8 +5,8 @@
    <div class="col-sm-10">
        <span [ngClass]="task.isDone ? 'task-done' : 'task'" (click)="enableEditing()" *ngIf="!editable">{{task.name}}</span>
 
-      <form *ngIf="editable" (submit)="editName()">
-         <input type="text" [(ngModel)] = "editedName" name="newName" (blur)="disableEditing()"/>
+      <form *ngIf="editable" class="form-group" (submit)="editName()">
+         <input type="text" class="form-control input-sm" [(ngModel)] = "editedName" name="newName" (blur)="disableEditing()" focus/>
       </form>
    </div>
    <div class="col-sm-1">
