@@ -10,7 +10,7 @@
 </div>
 
 <div class="container">
- <div class="col-sm-6">
+ <div class="col-sm-9">
      <ul class="list-group">
         <li *ngFor="let aTask of tasks" class="list-group-item">
           <app-task [task]="aTask" (notify)="onNotify($event)"></app-task>
