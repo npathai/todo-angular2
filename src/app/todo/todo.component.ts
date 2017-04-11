@@ -38,8 +38,13 @@ export class TodoComponent implements OnInit {
       return this.todoService.getAll();
     }).then(tasks => {
       this.tasks = tasks;
+      this.form.setValue({
+        newTask: ''
+      });
+      this.form.reset();
       console.log(this.tasks);
     });
+
   }
 
   // deleteTask(id: number) {
