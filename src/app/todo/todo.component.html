@@ -1,7 +1,10 @@
 <div class="container">
-    <form (ngSubmit)="onSubmit()">
+    <form novalidate [formGroup]="form" (ngSubmit)="onSubmit(form)">
       <div class="form-group">
-        <input type="text" name="task" [(ngModel)]="newTask" placeholder="Add a task" class="form-control"/>
+        <input type="text" name="task" placeholder="Add a task" [ngClass]="form.get('newTask').hasError('required') && form.get('newTask').touched ? 'form-control form-control-danger' : 'form-control'" formControlName="newTask"/>
+        <div class="error" *ngIf="form.get('newTask').hasError('required') && form.get('newTask').touched">
+          Name is required
+      </div>
       </div>
     </form>
 </div>
