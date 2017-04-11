@@ -49,6 +49,7 @@ export class TaskComponent implements OnInit {
 
   disableEditing() {
     this.editable = false;
+    this.editedName = this.task.name;
   }
 
   editName() {

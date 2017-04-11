@@ -13,6 +13,7 @@ import {Task} from '../model/task';
 export class TodoComponent implements OnInit {
   tasks: Task[];
   form: FormGroup;
+  isSubmitted = false;
 
   constructor(private todoService: InMemoryTodoService, fb: FormBuilder) {
     this.form = fb.group({
@@ -29,6 +30,8 @@ export class TodoComponent implements OnInit {
   onSubmit({value, valid}: {value: FormGroup, valid: boolean}) {
     console.log('on submit called ' + this.form.get('newTask').value);
     console.log('on submit called ' + valid);
+    this.isSubmitted = true;
+
     if (!valid) {
       return;
     }
@@ -42,6 +45,7 @@ export class TodoComponent implements OnInit {
         newTask: ''
       });
       this.form.reset();
+      this.isSubmitted = false;
       console.log(this.tasks);
     });
 
