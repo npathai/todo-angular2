@@ -7,7 +7,7 @@ export class LocalStorageTodoService {
 
   constructor() {
     this.id = 1;
-    if (localStorage.getItem('todos') === undefined) {
+    if (localStorage.getItem('todos') === null) {
       localStorage.setItem('todos', JSON.stringify([]));
     }
   }
