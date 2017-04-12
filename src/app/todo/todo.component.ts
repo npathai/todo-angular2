@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
 
-import {InMemoryTodoService} from '../service/in-memory-todo.service';
+import {LocalStorageTodoService} from '../service/local-storage-todo.service';
 import {Task} from '../model/task';
 
 @Component({
@@ -15,7 +15,7 @@ export class TodoComponent implements OnInit {
   form: FormGroup;
   isSubmitted = false;
 
-  constructor(private todoService: InMemoryTodoService, fb: FormBuilder) {
+  constructor(private todoService: LocalStorageTodoService, fb: FormBuilder) {
     this.form = fb.group({
       newTask: new FormControl('', [Validators.required])
     });

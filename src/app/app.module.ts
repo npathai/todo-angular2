@@ -10,6 +10,7 @@ import { TaskComponent } from './todo/task.component';
 import { FocusDirective } from './directive/focus.directive';
 import { SearchComponent } from './search/search.component';
 import {InMemoryTodoService} from './service/in-memory-todo.service';
+import {LocalStorageTodoService} from './service/local-storage-todo.service';
 
 const routes = [
   {path: '', component: TodoComponent},
@@ -31,7 +32,7 @@ const routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [InMemoryTodoService],
+  providers: [LocalStorageTodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

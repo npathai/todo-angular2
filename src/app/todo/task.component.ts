@@ -1,6 +1,6 @@
 import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {Task} from '../model/task';
-import {InMemoryTodoService} from '../service/in-memory-todo.service';
+import {LocalStorageTodoService} from '../service/local-storage-todo.service';
 
 @Component({
   selector: 'app-task',
@@ -16,7 +16,7 @@ export class TaskComponent implements OnInit {
   editable: boolean = false;
   editedName: string;
 
-  constructor(private todoService: InMemoryTodoService) {
+  constructor(private todoService: LocalStorageTodoService) {
     console.log('task component created: ');
   }
 
