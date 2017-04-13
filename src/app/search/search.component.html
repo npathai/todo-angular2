@@ -8,7 +8,7 @@
     <div *ngIf="searchRes">
   <ul class="list-group">
     <li *ngFor="let task of searchRes" class="list-group-item">
-      <app-task [task]="task" (event)="onEvent($event)"></app-task>
+      <app-task [task]="task" (notify)="onNotify($event)"></app-task>
     </li>
   </ul>
 </div>

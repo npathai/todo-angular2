@@ -31,4 +31,12 @@ export class SearchComponent implements OnInit {
       this.searchRes = tasks.filter(task => task.name.indexOf(this.query) >= 0);
     });
   }
+
+  onNotify(message: string) {
+    console.log('On notify called of search component: ' + message);
+    this.todoService.getAll().then(tasks => {
+      this.searchRes = tasks;
+    });
+  }
+
 }

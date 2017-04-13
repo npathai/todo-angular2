@@ -50,25 +50,7 @@ export class TodoComponent implements OnInit {
     });
 
   }
-
-  // deleteTask(id: number) {
-  //   this.todoService.delete(id)
-  //   .then(() => {
-  //     return this.todoService.getAll();
-  //   }).then(tasks => {
-  //     this.tasks = tasks;
-  //   });
-  // }
-
-  // toggleTask(task: Task) {
-  //   this.todoService.updateDone(task.id, !task.isDone)
-  //   .then(() => {
-  //     return this.todoService.getAll();
-  //   }).then(tasks => {
-  //     this.tasks = tasks;
-  //   });
-  // }
-
+  
   onNotify(message: string) {
     console.log('On notify called of todo component: ' + message);
     this.todoService.getAll().then(tasks => {

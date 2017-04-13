@@ -39,6 +39,7 @@ export class TaskComponent implements OnInit {
     console.log(this.task.id);
     this.todoService.delete(this.task.id)
     .then(() => {
+      console.log('promise fulfilled for delete')
       this.notify.emit('deleted');
     });
   }
