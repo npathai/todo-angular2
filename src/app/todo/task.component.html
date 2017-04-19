@@ -4,15 +4,31 @@
      <div class="col-sm-1">
          <input type="checkbox" (click)="toggleTask()" [(ngModel)]="task.isDone"/>
      </div>
-     <div class="col-sm-6">
-         <span [ngClass]="task.isDone ? 'task-done' : 'task'" (click)="enableEditing()" *ngIf="!editable" style="cursor:pointer;">
+     <div class="col-sm-9">
+         <span appHighlight [ngClass]="task.isDone ? 'task-done' : 'task'" (click)="enableEditing()" *ngIf="!editable" style="cursor:pointer;" >
             {{task.name}}
          </span>
 
-        <form *ngIf="editable" class="form-group" (submit)="editName()">
+      <!--   <form novalidate [formGroup]="form" (ngSubmit)="onSubmit(form)">
+
+         <div class="form-group" [ngClass]="form.get('newTask').hasError('required') && isSubmitted ? 'has-danger' : ''">
+           <input type="text" class="form-control form-control-danger" id="task" placeholder="Add a task" formControlName="newTask">
+           <div class="form-control-feedback" *ngIf="form.get('newTask').hasError('required') && isSubmitted">Task name is required</div>
+         </div>
+        </form>
+    -->
+
+      <form novalidate *ngIf="editable" [formGroup]="form" (ngSubmit)="editName(form)">
+        <div class="form-group" [ngClass]="form.get('updatedTask').hasError('required') && isSubmitted ? 'has-danger' : ''">
+          <input type="text" class="form-control input-sm form-control-danger" id="task" placeholder="Add a task" formControlName="updatedTask">
+          <div class="form-control-feedback" *ngIf="form.get('updatedTask').hasError('required') && isSubmitted">Task name is required</div>
+        </div>
+      </form>
+
+<!--        <form novalidate *ngIf="editable" class="form-group" (submit)="editName()">
            <input type="text" class="form-control input-sm" [(ngModel)] = "editedName" name="newName" (blur)="disableEditing()" focus/>
         </form>
-
+-->
      </div>
      <div class="col-sm-1">
         <span class="glyphicon glyphicon-trash" aria-hidden="true" style="cursor:pointer;"></span>

@@ -19,7 +19,7 @@
 </div>
 
 <div class="container">
- <div class="col-sm-9">
+ <div class="col-xs-2">
      <ul class="list-group">
         <li *ngFor="let aTask of tasks" class="list-group-item">
           <app-task [task]="aTask" (notify)="onNotify($event)"></app-task>

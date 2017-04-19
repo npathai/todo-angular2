@@ -2,6 +2,8 @@ import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {Task} from '../model/task';
 import {LocalStorageTodoService} from '../service/local-storage-todo.service';
 
+import { FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
+
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
@@ -15,14 +17,19 @@ export class TaskComponent implements OnInit {
 
   editable: boolean = false;
   editedName: string;
+  isSubmitted = false;
+  form: FormGroup;
 
-  constructor(private todoService: LocalStorageTodoService) {
+  constructor(private todoService: LocalStorageTodoService, private fb: FormBuilder) {
     console.log('task component created: ');
   }
 
   ngOnInit() {
     console.log('On init called of task component: ');
     this.editedName = this.task.name;
+    this.form = this.fb.group({
+      updatedTask: new FormControl(this.task.name, [Validators.required])
+    });
   }
 
   toggleTask() {
@@ -53,9 +60,18 @@ export class TaskComponent implements OnInit {
     this.editedName = this.task.name;
   }
 
-  editName() {
-    if (!(this.editedName === this.task.name)) {
-      let newTask = new Task(this.task.id, this.editedName, this.task.isDone);
+  editName({value, valid}: {value: FormGroup, valid: boolean}) {
+    this.isSubmitted = true;
+
+    /* Consider a case when if user doesnt enter any value while updating task list,
+       it will notify to the user to enter something at that case the value of valid is 'false' */
+    if (!valid) {
+      return;
+    }
+
+    if (!(this.editedName === this.task.name)){
+      //let newTask = new Task(this.task.id, this.editedName, this.task.isDone);
+      let newTask = this.form.get('updatedTask').value;
       this.todoService.update(newTask)
       .then(() => {
         this.task = newTask;
@@ -63,5 +79,6 @@ export class TaskComponent implements OnInit {
       });
     }
     this.editable = false;
+    this.isSubmitted = false;
   }
 }
