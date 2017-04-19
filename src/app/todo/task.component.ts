@@ -16,7 +16,6 @@ export class TaskComponent implements OnInit {
   @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
   editable: boolean = false;
-  editedName: string;
   isSubmitted = false;
   form: FormGroup;
 
@@ -26,7 +25,6 @@ export class TaskComponent implements OnInit {
 
   ngOnInit() {
     console.log('On init called of task component: ');
-    this.editedName = this.task.name;
     this.form = this.fb.group({
       updatedTask: new FormControl(this.task.name, [Validators.required])
     });
@@ -57,28 +55,37 @@ export class TaskComponent implements OnInit {
 
   disableEditing() {
     this.editable = false;
-    this.editedName = this.task.name;
+    this.form.setValue({
+      updatedTask: this.task.name
+    });
+    console.log(this.form.get('updatedTask').value);
+    
   }
 
   editName({value, valid}: {value: FormGroup, valid: boolean}) {
     this.isSubmitted = true;
-
+    console.log('edit name called');
+    console.log('valid: ' + valid);
     /* Consider a case when if user doesnt enter any value while updating task list,
        it will notify to the user to enter something at that case the value of valid is 'false' */
     if (!valid) {
       return;
     }
 
-    if (!(this.editedName === this.task.name)){
-      //let newTask = new Task(this.task.id, this.editedName, this.task.isDone);
-      let newTask = this.form.get('updatedTask').value;
+    if (!(this.form.get('updatedTask').value === this.task.name)){
+      let newTask = new Task(this.task.id, this.form.get('updatedTask').value, this.task.isDone);
       this.todoService.update(newTask)
       .then(() => {
         this.task = newTask;
         this.notify.emit('edited');
       });
     }
+
     this.editable = false;
     this.isSubmitted = false;
+    this.form.setValue({
+      updatedTask: this.task.name
+    });
+    this.form.reset();
   }
 }

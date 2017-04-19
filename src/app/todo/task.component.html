@@ -5,7 +5,7 @@
          <input type="checkbox" (click)="toggleTask()" [(ngModel)]="task.isDone"/>
      </div>
      <div class="col-sm-9">
-         <span appHighlight [ngClass]="task.isDone ? 'task-done' : 'task'" (click)="enableEditing()" *ngIf="!editable" style="cursor:pointer;" >
+         <span [ngClass]="task.isDone ? 'task-done' : 'task'" (click)="enableEditing()" *ngIf="!editable" style="cursor:pointer;" >
             {{task.name}}
          </span>
 
@@ -18,9 +18,9 @@
         </form>
     -->
 
-      <form novalidate *ngIf="editable" [formGroup]="form" (ngSubmit)="editName(form)">
+      <form novalidate *ngIf="editable" [formGroup]="form" (submit)="editName(form)">
         <div class="form-group" [ngClass]="form.get('updatedTask').hasError('required') && isSubmitted ? 'has-danger' : ''">
-          <input type="text" class="form-control input-sm form-control-danger" id="task" placeholder="Add a task" formControlName="updatedTask">
+          <input type="text" class="form-control input-sm form-control-danger" id="task" placeholder="Add a task" formControlName="updatedTask" (blur)="disableEditing()" focus/>
           <div class="form-control-feedback" *ngIf="form.get('updatedTask').hasError('required') && isSubmitted">Task name is required</div>
         </div>
       </form>
