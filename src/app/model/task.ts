@@ -8,4 +8,8 @@ export class Task {
     this.name = name;
     this.isDone = isDone;
   }
+
+  getName(): string {
+    return this.name;
+  }
 }

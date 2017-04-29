@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
-
-import {LocalStorageTodoService} from '../service/local-storage-todo.service';
+import {TodoRestService} from '../service/todo-rest.service';
 import {Task} from '../model/task';
 
 @Component({
@@ -15,7 +14,7 @@ export class TodoComponent implements OnInit {
   form: FormGroup;
   isSubmitted = false;
 
-  constructor(private todoService: LocalStorageTodoService, fb: FormBuilder) {
+  constructor(private todoService: TodoRestService, fb: FormBuilder) {
     this.form = fb.group({
       newTask: new FormControl('', [Validators.required])
     });
@@ -38,6 +37,8 @@ export class TodoComponent implements OnInit {
 
     this.todoService.add(this.form.get('newTask').value)
     .then(task => {
+      console.log("Received add response");
+      console.log(task);
       return this.todoService.getAll();
     }).then(tasks => {
       this.tasks = tasks;
@@ -50,11 +51,12 @@ export class TodoComponent implements OnInit {
     });
 
   }
-  
+
   onNotify(message: string) {
     console.log('On notify called of todo component: ' + message);
     this.todoService.getAll().then(tasks => {
       this.tasks = tasks;
+      console.log(this.tasks);
     });
   }
 }

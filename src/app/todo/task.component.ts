@@ -1,6 +1,6 @@
 import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {Task} from '../model/task';
-import {LocalStorageTodoService} from '../service/local-storage-todo.service';
+import {TodoRestService} from '../service/todo-rest.service';
 
 import { FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
 
@@ -19,7 +19,7 @@ export class TaskComponent implements OnInit {
   isSubmitted = false;
   form: FormGroup;
 
-  constructor(private todoService: LocalStorageTodoService, private fb: FormBuilder) {
+  constructor(private todoService: TodoRestService, private fb: FormBuilder) {
     console.log('task component created: ');
   }
 
@@ -59,7 +59,7 @@ export class TaskComponent implements OnInit {
       updatedTask: this.task.name
     });
     console.log(this.form.get('updatedTask').value);
-    
+
   }
 
   editName({value, valid}: {value: FormGroup, valid: boolean}) {

@@ -8,30 +8,14 @@
          <span [ngClass]="task.isDone ? 'task-done' : 'task'" (click)="enableEditing()" *ngIf="!editable" style="cursor:pointer;" >
             {{task.name}}
          </span>
-
-      <!--   <form novalidate [formGroup]="form" (ngSubmit)="onSubmit(form)">
-
-         <div class="form-group" [ngClass]="form.get('newTask').hasError('required') && isSubmitted ? 'has-danger' : ''">
-           <input type="text" class="form-control form-control-danger" id="task" placeholder="Add a task" formControlName="newTask">
-           <div class="form-control-feedback" *ngIf="form.get('newTask').hasError('required') && isSubmitted">Task name is required</div>
-         </div>
+        <form novalidate *ngIf="editable" [formGroup]="form" (submit)="editName(form)">
+          <div class="form-group" [ngClass]="form.get('updatedTask').hasError('required') && isSubmitted ? 'has-danger' : ''">
+            <input type="text" class="form-control input-sm form-control-danger" id="task" placeholder="Add a task" formControlName="updatedTask" (blur)="disableEditing()" focus/>
+            <div class="form-control-feedback" *ngIf="form.get('updatedTask').hasError('required') && isSubmitted">Task name is required</div>
+          </div>
         </form>
-    -->
-
-      <form novalidate *ngIf="editable" [formGroup]="form" (submit)="editName(form)">
-        <div class="form-group" [ngClass]="form.get('updatedTask').hasError('required') && isSubmitted ? 'has-danger' : ''">
-          <input type="text" class="form-control input-sm form-control-danger" id="task" placeholder="Add a task" formControlName="updatedTask" (blur)="disableEditing()" focus/>
-          <div class="form-control-feedback" *ngIf="form.get('updatedTask').hasError('required') && isSubmitted">Task name is required</div>
-        </div>
-      </form>
-
-<!--        <form novalidate *ngIf="editable" class="form-group" (submit)="editName()">
-           <input type="text" class="form-control input-sm" [(ngModel)] = "editedName" name="newName" (blur)="disableEditing()" focus/>
-        </form>
--->
      </div>
      <div class="col-sm-1">
-        <span class="glyphicon glyphicon-trash" aria-hidden="true" style="cursor:pointer;"></span>
         <span  (click)="deleteTask()" class="fa fa-trash-o" style="cursor:pointer;"></span>
      </div>
   </div>

@@ -11,6 +11,8 @@ import { FocusDirective } from './directive/focus.directive';
 import { SearchComponent } from './search/search.component';
 import {InMemoryTodoService} from './service/in-memory-todo.service';
 import {LocalStorageTodoService} from './service/local-storage-todo.service';
+import {DndModule} from 'ng2-dnd';
+import {TodoRestService} from './service/todo-rest.service';
 
 const routes = [
   {path: '', component: TodoComponent},
@@ -30,9 +32,10 @@ const routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    DndModule.forRoot()
   ],
-  providers: [LocalStorageTodoService],
+  providers: [LocalStorageTodoService, TodoRestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
