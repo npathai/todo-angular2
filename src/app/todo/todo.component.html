@@ -22,7 +22,7 @@
 <div class="container">
     <div class="col-xs-2">
           <ul class="list-group" dnd-sortable-container [sortableData]="tasks">
-                <li *ngFor="let item of tasks; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">
+                <li *ngFor="let item of tasks; let i = index" class="list-group-item panel-header" dnd-sortable [sortableIndex]="i">
                       <app-task [task]="item" (notify)="onNotify($event)"></app-task>
                 </li>
           </ul>

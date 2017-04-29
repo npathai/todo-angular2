@@ -18,6 +18,7 @@ export class TaskComponent implements OnInit {
   editable: boolean = false;
   isSubmitted = false;
   form: FormGroup;
+  toggleTaskProcessing = false;
 
   constructor(private todoService: TodoRestService, private fb: FormBuilder) {
     console.log('task component created: ');
@@ -33,6 +34,7 @@ export class TaskComponent implements OnInit {
   toggleTask() {
     console.log('toggle called');
     console.log(this.task.id);
+    this.toggleTaskProcessing = true;
     this.todoService.updateDone(this.task.id, !this.task.isDone)
     .then(() => {
       this.notify.emit('toggled');

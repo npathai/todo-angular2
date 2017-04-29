@@ -54,13 +54,14 @@ public class TodosController {
 	}
 	
 	@RequestMapping(value = "/rest/api/todos/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Todo updateName(@PathVariable("id") Integer id, @RequestBody Todo receivedTodo) {
+	public Todo updateName(@PathVariable("id") Integer id, @RequestBody Todo receivedTodo) throws InterruptedException {
 		Todo task = todoRepository.findOne(id);
 		if (receivedTodo.getName() != null) {
 			task.setName(receivedTodo.getName());
 		} 
 		if (receivedTodo.isDone() != null) {
 			task.setDone(receivedTodo.isDone());
+			Thread.sleep(1000L);
 		}
 		return todoRepository.findOne(id);
 	}
