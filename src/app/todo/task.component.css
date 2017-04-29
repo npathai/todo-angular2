@@ -6,3 +6,15 @@
 .task {
 
 }
+
+.panel-header{
+    margin-bottom:5px;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    border-radius: 0.25rem;
+    border-top: 2px solid #3c8dbc;
+}
+
+.task-spinner {
+  font-size:15px;
+  color:rgb(60,141,188)
+}

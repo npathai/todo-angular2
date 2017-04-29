@@ -59,6 +59,7 @@ export class LocalStorageTodoService {
   }
 
   update(task: Task): Promise<void> {
+    console.log('In memory task service >>>>> update called : ' + task.id);
     var tasks = JSON.parse(localStorage.getItem('todos'));
     for (var i = 0; i < tasks.length; i++) {
       const parsedTask = JSON.parse(tasks[i]);

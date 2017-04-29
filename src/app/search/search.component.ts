@@ -1,6 +1,7 @@
 import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {Task} from '../model/task';
 import {LocalStorageTodoService} from '../service/local-storage-todo.service';
+import {TodoRestService} from '../service/todo-rest.service';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +13,7 @@ export class SearchComponent implements OnInit {
   query: string;
   searchRes: Task[];
 
-  constructor(private todoService: LocalStorageTodoService) { }
+  constructor(private todoService: TodoRestService) { }
 
   ngOnInit() {
 

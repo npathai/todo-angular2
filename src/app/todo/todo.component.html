@@ -18,12 +18,13 @@
     </form>
 </div>
 
+
 <div class="container">
- <div class="col-sm-9">
-     <ul class="list-group">
-        <li *ngFor="let aTask of tasks" class="list-group-item">
-          <app-task [task]="aTask" (notify)="onNotify($event)"></app-task>
-        </li>
-      </ul>
-  </div>
+    <div class="col-xs-2">
+          <ul class="list-group" dnd-sortable-container [sortableData]="tasks">
+                <li *ngFor="let item of tasks; let i = index" class="list-group-item panel-header" dnd-sortable [sortableIndex]="i">
+                      <app-task [task]="item" (notify)="onNotify($event)"></app-task>
+                </li>
+          </ul>
+    </div>
 </div>
