@@ -7,7 +7,7 @@
 
     <div *ngIf="searchRes">
   <ul class="list-group">
-    <li *ngFor="let task of searchRes" class="list-group-item">
+    <li *ngFor="let task of searchRes" class="list-group-item panel-header">
       <app-task [task]="task" (notify)="onNotify($event)"></app-task>
     </li>
   </ul>
