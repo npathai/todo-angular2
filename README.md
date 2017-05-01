@@ -39,20 +39,24 @@ Visit : https://nodejs.org/en/download/
 
 ## 4) Once installed you need to import our main module
 
-   `import {NgbModule} from '@ng-bootstrap/ng-bootstrap';`
+   ```typescript
+   import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+   ```
 
 ## 5) Need to add imports in AppModule
 
   Example :
 
-  `@NgModule({
+  ```typescript
+  @NgModule({
     declarations: [AppComponent, ...],
     imports: [NgbModule.forRoot(), ...],  // forRoot is used to add application/singleton services.
     bootstrap: [AppComponent]
   })
 
   export class AppModule {
-  }`
+  }
+  ```
 
 ## 6) Install bootstrap (Using only for CSS reference)
 
@@ -62,26 +66,31 @@ Visit : https://nodejs.org/en/download/
 
   Example :
 
-  `"styles": [
+  ```css
+  "styles": [
     "styles.css",
     "../node_modules/bootstrap/dist/css/bootstrap.css"      
-  ]`
+  ]
+  ```
 
 
 #           TODO COMPONENT TEMPLATE
 
-`<div class="container">
+```html
+<div class="container">
  <div class="col-xs-2">
      <ul class="list-group">
         <li class="list-group-item">
         </li>
       </ul>
   </div>
-</div>`
+</div>
+```
 
 #        TASK COMPONENT TEMPLATE
 
-`<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+```html
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <div class="container">
   <div class="row">
      <div class="col-sm-1">
@@ -95,30 +104,36 @@ Visit : https://nodejs.org/en/download/
         <span class="fa fa-trash-o" style="cursor:pointer;"></span>
      </div>
   </div>
-</div>`
+</div>
+```
 
 #   FORM Validation css
 
-`<div class="form-group" [ngClass]="form.get('updatedTask').hasError('required') && isSubmitted ? 'has-danger' : ''">
+```html
+<div class="form-group" [ngClass]="form.get('updatedTask').hasError('required') && isSubmitted ? 'has-danger' : ''">
   <input type="text" class="form-control input-sm form-control-danger" id="task" placeholder="Add a task" formControlName="updatedTask" focus/>
   <div class="form-control-feedback" \*ngIf="form.get('updatedTask').hasError('required') && isSubmitted">
     Task name is required
   </div>
-</div>`
+</div>
+```
 
 #  STRIKETHROUGH CSS
 
-`<span [ngClass]="task.isDone ? 'task-done' : 'task'" (click)="enableEditing()" \*ngIf="!editable" style="cursor:pointer;" >
-</span>`
+```html
+<span [ngClass]="task.isDone ? 'task-done' : 'task'" (click)="enableEditing()" \*ngIf="!editable" style="cursor:pointer;" >
+</span>
+```
 
 #  How to make DRAG & DROP TODO
 
-  1) Install DndModule
+  ## 1) Install DndModule
 
-    npm install ng2-dnd --save
+    `npm install ng2-dnd --save`
 
-  2) Update App.module.ts
+  ## 2) Update App.module.ts
 
+  ```typescript
   import {BrowserModule} from "@angular/platform-browser";
   import {NgModule} from '@angular/core';
   import {DndModule} from 'ng2-dnd';
@@ -132,7 +147,8 @@ Visit : https://nodejs.org/en/download/
   })
   export class AppModule {
   }
+  ```
 
-#     Angular 2 Bootstrap + Bootstrap Styling
+#  Angular 2 Bootstrap + Bootstrap Styling
 
 Using bootstrap components in Angular 2 Visit: https://valor-software.com/ng2-bootstrap/#/
